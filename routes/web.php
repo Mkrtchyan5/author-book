@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', ['App\Http\Controllers\Auth\LoginController', 'showLoginForm']);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -45,8 +45,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/update', [BookController::class, 'update'])->name('update');
         Route::post('/delete', [BookController::class, 'delete'])->name('delete');
         Route::get('/view/{book}', [BookController::class, 'view'])->name("view");
-
-
     });
 
 });
