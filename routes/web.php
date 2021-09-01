@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', ['App\Http\Controllers\Auth\LoginController', 'showLoginForm']);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
